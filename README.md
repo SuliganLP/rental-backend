@@ -321,3 +321,23 @@ Can:
 - Delete own listings
 - View booking requests for own listings
 - Confirm or reject bookings
+
+## Test Database Setup
+
+On first startup with a fresh MySQL data volume, Docker automatically executes `mysql-init/01-grant-test-db.sh`.
+
+This script grants the application user the necessary permissions to create and manage the separate test database.
+
+To start the application:
+
+```bash
+docker compose up --build -d
+```
+
+To run the automated tests:
+
+```bash
+docker compose exec web python manage.py test
+```
+
+The initialization script runs only when the MySQL data volume is created for the first time. Existing databases are not modified automatically.
